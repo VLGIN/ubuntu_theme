@@ -16,4 +16,5 @@ Custom ubuntu top bar and theme.
 * Copy folder iconthemeblue to .icons.
 * [Optional] If you use dash to dock extension: 
   * Copy .restartgnomeshell.sh to home/$USER directory.
+  * Change mode to executable: ```chmod +x /home/$USER/.restartgnomeshell.sh```.
   * Add ```/home/$USER/.restartgnomeshell.sh``` to startup applications for running it as a daemon.
