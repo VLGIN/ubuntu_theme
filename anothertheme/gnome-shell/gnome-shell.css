@@ -1331,7 +1331,8 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   -minimum-hpadding: 4px;
   font-weight: 300;
   color: rgba(255, 255, 254, 0.7);
-  background-color:rgba(0,0,0,0.7);
+  /*background-color:rgba(0,0,0,0.7);*/
+  background-color: transparent;
   text-shadow: none;
   border-radius: 100px;
   transition-duration: 150ms;
