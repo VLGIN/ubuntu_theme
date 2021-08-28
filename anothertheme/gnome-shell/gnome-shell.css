@@ -1279,8 +1279,8 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   background-color:rgba(0,0,0,0.5);
   /* transition from solid to transparent */
   transition-duration: 250ms;
-  font-weight: 300;
-  height: 32px;
+  font-weight: 250;
+  height: 27px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.3);
 }
 
