@@ -1,6 +1,9 @@
 # ubuntu_theme
 Custom ubuntu top bar and theme.
 
+# Prerequisite:
+* powerline font
+
 # Another theme:
 * Theme for top bar with custom color and appearance.
 
