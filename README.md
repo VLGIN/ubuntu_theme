@@ -11,6 +11,9 @@ Custom ubuntu top bar and theme.
 * Script fixing dash to dock extensions.
 * Restart gnome shell service each time unlocking screen.
 
+# .bashrc
+* Customize bash prompt.
+
 # How to use:
 * Copy folder anothertheme to .themes.
 * Copy folder iconthemeblue to .icons.
