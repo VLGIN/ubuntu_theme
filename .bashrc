@@ -178,6 +178,13 @@ bash_prompt_command() {
 	else
 		BRANCH=$'\uE0A0'
 	fi
+	
+	if [ -z "$CONDA_DEFAULT_ENV"  ] ; then
+		CONDA_ENV=$'conda'
+		
+	else
+		CONDA_ENV=${CONDA_DEFAULT_ENV}
+	fi
 }
 
 
@@ -300,6 +307,10 @@ bash_prompt() {
 	local BACKGROUND_4=$WHITE
 	local TEXTEFFECT_4=$BOLD
 	
+	local FONT_COLOR_5=$WHITE
+	local BACKGROUND_5=$L_MAGENTO
+	local TEXTEFFECT_5=$BOLD
+	
 	local PROMT_FORMAT=$BLUE_BOLD
 
 	
@@ -384,6 +395,10 @@ bash_prompt() {
 	BG4=$(($BACKGROUND_4+$BG))
 	FE4=$(($TEXTEFFECT_4+$EFFECT))
 	
+	FC5=$(($FONT_COLOR_5+$COLOR))
+	BG5=$((BACKGROUND_5+$BG))
+	FE5=$(($TEXTEFFECT_5+$EFFECT))
+	
 
 	## CALL FORMATING HELPER FUNCTION: effect + font color + BG color
 	local TEXT_FORMAT_1
@@ -394,15 +409,16 @@ bash_prompt() {
 	format_font TEXT_FORMAT_2 $FE2 $FC2 $BG2
 	format_font TEXT_FORMAT_3 $FC3 $FE3 $BG3
 	format_font TEXT_FORMAT_4 $FC4 $FE4 $BG4
+	format_font TEXT_FORMAT_5 $FC5 $FE5 $BG5
 	
 	
 	# GENERATE PROMT SECTIONS
 	local PROMT_USER=$"$TEXT_FORMAT_1 \u "
 	local PROMT_HOST=$"$TEXT_FORMAT_2 \h "
 	local GIT_BRANCH=$"$TEXT_FORMAT_3 \${BRANCH} "
-	local PROMT_PWD=$"$TEXT_FORMAT_4 \${NEW_PWD} "
+	local CONDA=$"$TEXT_FORMAT_4 \${CONDA_ENV} "
+	local PROMT_PWD=$"$TEXT_FORMAT_5 \${NEW_PWD} "
 	local PROMT_INPUT=$"$PROMT_FORMAT "
-
 
 	############################################################################
 	## SEPARATOR FORMATING                                                    ##
@@ -421,18 +437,22 @@ bash_prompt() {
 	TSBG3=$(($BACKGROUND_4+$BG))
 	
 	TSFC4=$(($BACKGROUND_4+$COLOR))
-	TSBG4=$(($DEFAULT+$BG))
+	TSBG4=$(($BACKGROUND_5+$BG))
 	
+	TSFC5=$(($BACKGROUND_5+$COLOR))
+	TSBG5=$((DEFAULT+$BG))
 
 	## CALL FORMATING HELPER FUNCTION: effect + font color + BG color
 	local SEPARATOR_FORMAT_1
 	local SEPARATOR_FORMAT_2
 	local SEPARATOR_FORMAT_3
-	local SEEARATOR_FORMAT_4
+	local SEPARATOR_FORMAT_4
+	local SEPARATOR_FORMAT_5
 	format_font SEPARATOR_FORMAT_1 $TSFC1 $TSBG1
 	format_font SEPARATOR_FORMAT_2 $TSFC2 $TSBG2
 	format_font SEPARATOR_FORMAT_3 $TSFC3 $TSBG3
 	format_font SEPARATOR_FORMAT_4 $TSFC4 $TSBG4
+	format_font SEPARATOR_FORMAT_5 $TSFC5 $TSBG5
 	
 
 	# GENERATE SEPARATORS WITH FANCY TRIANGLE
@@ -441,7 +461,7 @@ bash_prompt() {
 	local SEPARATOR_2=$SEPARATOR_FORMAT_2$TRIANGLE
 	local SEPARATOR_3=$SEPARATOR_FORMAT_3$TRIANGLE
 	local SEPARATOR_4=$SEPARATOR_FORMAT_4$TRIANGLE
-
+	local SEPARATOR_5=$SEPARATOR_FORMAT_5$TRIANGLE
 
 
 	############################################################################
@@ -462,7 +482,7 @@ bash_prompt() {
 	## BASH PROMT                                                             ##
 	## Generate promt and remove format from the rest                         ##
 	############################################################################
-	PS1="$TITLEBAR${PROMT_USER}${SEPARATOR_1}${PROMT_HOST}${SEPARATOR_2}${GIT_BRANCH}${SEPARATOR_3}${PROMT_PWD}${SEPARATOR_4}${PROMT_INPUT} "
+	PS1="$TITLEBAR${PROMT_USER}${SEPARATOR_1}${PROMT_HOST}${SEPARATOR_2}${GIT_BRANCH}${SEPARATOR_3}${CONDA}${SEPARATOR_4}${PROMT_PWD}${SEPARATOR_5}${PROMT_INPUT}"
 
 	
 
